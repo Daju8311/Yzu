@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>個人名片</title>
+
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+body{
+    background:#e5e5e5;
+    font-family:"Microsoft JhengHei",sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+
+.card{
+    width:450px;
+}
+
+
+/* 第一區 */
+.top{
+    position:relative;
+    height:550px;
+    margin:20px;
+    border-radius:25px;
+    overflow:hidden;
+    background:black;
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.top:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.35);
+}	
+
+.top .avatar{
+    width: 100%;
+    height: 480;
+    object-fit: cover;
+    object-position: 5px -80px;
+	transform: scale(1.05);
+    margin-top: 0;
+}
+
+
+.top::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,.1) 0%,
+        rgba(0,0,0,.3) 50%,
+        rgba(0,0,0,.9) 100%
+    );
+}
+
+
+/* 個人資料 */
+.profile{
+    position:absolute;
+    bottom:40px;
+    width:100%;
+    text-align:center;
+    z-index:2;
+    color:white;
+}
+
+
+.profile h1{
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+
+.profile p{
+    font-size:18px;
+}
+
+
+/* GitHub圖片 */
+.github-icon{
+    width: 24px;
+    height: 24px;
+    margin-top: 8px;
+    border-radius: 50%;
+    padding: 2px;
+    object-fit: cover;
+	cursor: pointer;                    
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.github-icon:hover {
+    transform: scale(1.2);
+    opacity: 0.85;
+}
+
+
+/* 第二區 */
+.second{
+    margin:20px;
+}
+
+
+.hobby-box{
+    position:relative;
+    background:white;
+    border:3px solid black;
+    border-radius:20px;
+    padding: 25px 20px 20px;
+    text-align:center;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	overflow: hidden;
+	background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), 
+    url('20230801_123112432_iOS.jpg') center/cover no-repeat;
+}
+
+.hobby-box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.hobby-title{
+    position: static;     
+    transform: none;         
+    background: transparent; 
+    padding: 0;              
+    margin-bottom: 15px;    
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+.hobby-box ul{
+    list-style:none;
+}
+
+
+.hobby-box li{
+    font-size:22px;
+    margin:15px 0;
+	transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.hobby-box li:hover {
+    transform: scale(1.08);
+    color: #0056b3;         
+}
+
+
+/* 第三區 */
+.third {
+    margin: 20px;
+}
+
+.target-box {
+    position: relative;
+    background: white;
+    border: 3px solid black;
+    border-radius: 20px;
+    padding: 25px 20px 20px;
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+	overflow: hidden;
+	background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), 
+    url('20230927_143422025_iOS.jpg') center/cover no-repeat;
+}
+
+.target-box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.target-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.target-box ul {
+    list-style: disc;        
+    list-style-position: inside;
+    padding: 0;
+}
+
+.target-box li {
+    font-size: 22px;
+    margin: 15px 0;
+    transition: transform 0.2s ease;
+}
+
+.target-box li:hover {
+    transform: scale(1.08);
+}
+</style>
+</head>
+
+
+<body>
+
+
+<div class="card">
+
+
+    <!-- 第一區 -->
+    <div class="top">
+
+
+        <img src="20260603_125821000_iOS.jpg" alt="個人照片" class="avatar">
+
+
+        <div class="profile">
+
+
+            <h1>陳恩浩</h1>
+
+
+            <p>元智大學資訊工程學系一年級</p>
+
+
+           <a href="https://github.com/Daju8311"><img src="github.png" alt="GitHub" class="github-icon"></a>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- 第二區 -->
+    <div class="second">
+
+
+        <div class="hobby-box">
+
+
+            <div class="hobby-title">
+                興趣
+            </div>
+
+
+            <ul>
+                <a href="https://load.tw/GES89x"><li>⚽ 球類運動</li></a>
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><li>🎵 聽音樂</li></a>
+                <a href="https://load.tw/Qhyqoz"><li>📱 玩遊戲</li></a>
+
+
+        </div>
+
+
+    </div>
+
+<audio id="hobbyMusic">
+原神启动！.wav
+</audio>
+
+<script>
+const hobbyBox = document.querySelector(".hobby-box");
+const music = document.getElementById("hobbyMusic");
+ 
+let hasPlayed = false;
+ 
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting && !hasPlayed) {
+music.play();
+hasPlayed = true;
+}
+});
+}, {
+threshold: 0.5
+});
+ 
+observer.observe(hobbyBox);
+</script>
+
+
+<!-- 第三區區 -->
+    <div class="third">
+
+
+        <div class="target-box">
+
+
+            <div class="target-title">
+                學習目標
+            </div>
+
+
+            <ul>
+                <li>不要被當</li>
+                <li>系排一半以上</li>
+                <li>CPE2題以上</li>
+            </ul>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+<audio id="targetMusic">
+20260925_144801000_iOS.mp3
+</audio>
+
+<script>
+const hobbyBox = document.querySelector(".target-box");
+const music = document.getElementById("targetMusic");
+ 
+let hasPlayed = false;
+ 
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting && !hasPlayed) {
+music.play();
+hasPlayed = true;
+}
+});
+}, {
+threshold: 0.5
+});
+ 
+observer.observe(targetBox);
+</script>
+
+</body>
+</html>
