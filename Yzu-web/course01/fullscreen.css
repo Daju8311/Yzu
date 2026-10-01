@@ -1,0 +1,156 @@
+/* ============================================
+   全屏式風格 (Fullscreen Style)
+   CSS Zen Garden - 沉浸式全屏設計
+   ============================================ */
+
+/* --- 基礎重置與全屏設定 --- */
+#fullscreen * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#fullscreen html, #fullscreen body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#fullscreen body {
+    font-family: "Helvetica Neue", Arial, "Microsoft JhengHei", sans-serif;
+    background: #0d1b2a;
+    color: #e0e0e0;
+    line-height: 1.8;
+}
+
+/* --- 主容器：全屏 --- */
+#fullscreen #container {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "header"
+        "main"
+        "footer";
+    gap: 0;
+}
+
+/* --- 介紹區域 --- */
+#fullscreen #intro {
+    grid-area: header;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 50%, #2a4a5a 100%);
+    border-bottom: 2px solid #00d4aa;
+}
+
+#fullscreen #pageHeader h1 {
+    font-size: 4rem;
+    font-weight: 300;
+    letter-spacing: 0.5rem;
+    color: #00d4aa;
+    text-transform: uppercase;
+}
+
+#fullscreen #pageHeader h1 span {
+    display: block;
+}
+
+#fullscreen #pageHeader h2 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #7a9aaa;
+    margin-top: 0.5rem;
+    letter-spacing: 0.3rem;
+}
+
+#fullscreen #quickSummary {
+    margin-top: 2rem;
+    max-width: 600px;
+}
+
+#fullscreen #quickSummary p {
+    color: #a0b8c8;
+    font-size: 0.95rem;
+}
+
+#fullscreen #preamble {
+    display: none; /* 全屏模式下隱藏，保持簡潔 */
+}
+
+/* --- 主要內容區域 --- */
+#fullscreen #supportingText {
+    grid-area: main;
+    padding: 3rem;
+    overflow-y: auto;
+    background: #0a1520;
+}
+
+#fullscreen #supportingText h3 {
+    font-size: 1.8rem;
+    color: #00d4aa;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #1a3040;
+}
+
+#fullscreen #supportingText p {
+    margin-bottom: 1.2rem;
+    color: #8098a8;
+    font-size: 0.95rem;
+}
+
+#fullscreen #explanation, #participation, #benefits, #requirements {
+    margin-bottom: 2.5rem;
+}
+
+/* --- 頁尾 --- */
+#fullscreen #footer {
+    grid-area: footer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem;
+    background: #081018;
+    border-top: 1px solid #1a3040;
+}
+
+#fullscreen #footer a {
+    color: #00d4aa;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s;
+}
+
+#fullscreen #footer a:hover {
+    color: #00ffcc;
+}
+
+/* --- 隱藏連結列表（全屏模式下不需要） --- */
+#fullscreen #linkList {
+    display: none;
+}
+
+/* --- 額外裝飾 div --- */
+#fullscreen #extraDiv1, #extraDiv2, #extraDiv3,
+#fullscreen #extraDiv4, #extraDiv5, #extraDiv6 {
+    display: none;
+}
+
+/* --- 響應式 --- */
+@media (max-width: 768px) {
+    #fullscreen #pageHeader h1 {
+        font-size: 2.5rem;
+    }
+
+    #fullscreen #supportingText {
+        padding: 1.5rem;
+    }
+}

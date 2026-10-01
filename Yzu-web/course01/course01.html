@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Zen Garden - 三種風格展示</title>
+
+    <!-- 導航列樣式 -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", "Helvetica Neue", Arial, sans-serif;
+        }
+
+        /* 導航列 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar button {
+            padding: 0.6rem 1.5rem;
+            font-size: 0.95rem;
+            font-family: inherit;
+            color: #fff;
+            background: transparent;
+            border: 2px solid #e94560;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .navbar button:hover {
+            background: #e94560;
+            transform: translateY(-2px);
+        }
+
+        .navbar button.active {
+            background: #e94560;
+            box-shadow: 0 0 15px rgba(233, 69, 96, 0.5);
+        }
+
+        /* 內容區域 */
+        .content {
+            padding-top: 80px;
+            min-height: 100vh;
+        }
+
+        /* 預設隱藏所有內容 */
+        .style-section {
+            display: none;
+        }
+
+        .style-section.active {
+            display: block;
+        }
+    </style>
+
+    <!-- 三個 CSS 檔案，預設只啟用 three-column -->
+    <link id="css-fullscreen" rel="stylesheet" href="fullscreen.css" disabled>
+    <link id="css-three-column" rel="stylesheet" href="three-column.css">
+    <link id="css-two-column" rel="stylesheet" href="two-column.css" disabled>
+</head>
+<body>
+
+    <!-- ===== 導航列 ===== -->
+    <nav class="navbar">
+        <button class="active" onclick="switchStyle('three-column', this)">三欄風格</button>
+        <button onclick="switchStyle('fullscreen', this)">全屏式風格</button>
+        <button onclick="switchStyle('two-column', this)">兩欄風格</button>
+    </nav>
+
+    <!-- ===== 內容區域 ===== -->
+    <div class="content">
+
+        <!-- 三欄風格 -->
+        <section id="three-column" class="style-section active">
+            <div id="container">
+                <div id="intro">
+                    <div id="pageHeader">
+                        <h1><span>css Zen Garden</span></h1>
+                        <h2><span>CSS設計之美</span></h2>
+                    </div>
+                    <div id="quickSummary">
+                        <p class="p1"><span>展示以CSS為基礎的設計方式能夠達到的視覺效果。只要選擇列表上的任一樣式表，就可以將它載入到這個頁面。</span></p>
+                        <p class="p2"><span>下載<a href="#">html</a>跟<a href="#">css</a>的範例檔案。</span></p>
+                    </div>
+                </div>
+                <div id="preamble">
+                    <h3><span>開悟之路</span></h3>
+                    <p class="p1"><span>各家瀏覽器的專屬標籤、低相容度的DOM，或者是缺乏完整支援的CSS等遺跡，如今都散落在闇黑而荒涼的道路上。</span></p>
+                    <p class="p2"><span>今日，我們必須掃除腦海裡的過時技巧。感謝W3C、WaSP，以及瀏覽器作者們的努力不懈，我們終於能達到網站設計技術的開悟境界。</span></p>
+                    <p class="p3"><span>css Zen Garden「樣式表禪意花園」邀請您放鬆身心，冥想專家們的重要課題。讓我們以清晰的心靈之眼凝視，並且用嶄新、充滿活力的方式學習這項受人尊敬的古老技術，達到天人合一的境界。</span></p>
+                </div>
+                <div id="supportingText">
+                    <div id="explanation">
+                        <h3><span>這是關於什麼？</span></h3>
+                        <p class="p1"><span>顯然平面設計師有必要認真看待CSS。Zen Garden致力於推廣使用、啟發靈感和鼓勵參與。你可以從瀏覽列表裡的設計著手。只要選擇列表上的任一樣式表，就可以將它載入到這個頁面。HTML程式碼都維持原狀，唯一改變的是使用的CSS檔案。沒錯，的確如此。</span></p>
+                        <p class="p2"><span>CSS具備完整控制超文字文件的能力。不過唯有當你把韁繩交給能從結構中創造美感的人們，用實例展示它的功能時，才能夠鼓舞人心。截至目前為止，網站結構設計師和程式員已經介紹過許多關於良好技巧與駭客手法的範例。平面設計師則還沒有在這個領域建立名聲。是需要改變的時候了。</span></p>
+                    </div>
+                    <div id="participation">
+                        <h3><span>參與</span></h3>
+                        <p class="p1"><span>我們只邀請平面設計師參與這項計畫。你必須修改這個頁面，所以得要有良好的CSS技巧。不過這份範例檔案已經詳盡地加上註解，即使是CSS初學者也能夠以此為出發點。請參考<a href="#">CSS資源手冊</a>，裡面有相關的進階教學與技巧說明。</span></p>
+                        <p class="p2"><span>你可以用你希望的任何方式修改樣式表，但是別更動HTML檔案。如果你從來都沒有這樣做過，也許會有點心生膽怯。不過你可以參考列表來深入地學習，並且拿範例檔案作為教學指南。</span></p>
+                        <p class="p3"><span>請下載<a href="#">html</a>跟<a href="#">css</a>的範例檔案，並且在自己的電腦上修改。在你完成你的傑作後（請別拿半成品投稿），先將CSS檔案上傳到你的網頁伺服器，再把檔案的網址<a href="#">寄給我們</a>。如果我們採用你的作品，就會自行下載相關圖片。最後成品會放在我們的伺服器上。</span></p>
+                    </div>
+                    <div id="benefits">
+                        <h3><span>益處</span></h3>
+                        <p class="p1"><span>你為什麼要參與這項計畫呢？因為可以展現你的實力、激發創作靈感，并且在設計以CSS為基礎的案例時，這項計畫可以當作參考用的資源。即使在今日這也是極為需要的。越來越多主流站台開始擁抱這項技術，但還是不夠。雖然現在還不成氣候，但總有一天這個展覽場地會成為歷史的寶藏。</span></p>
+                    </div>
+                    <div id="requirements">
+                        <h3><span>必要條件</span></h3>
+                        <p class="p1"><span>我們希望你盡可能地使用CSS1。CSS2則只可以使用已被廣泛支援的部分。css Zen Garden採用的是可行、實用的CSS語法，而不是些只能被 2% 觀眾瀏覽的超尖端技術。實際上，我們唯一的需求就只是你的CSS要合乎標準。</span></p>
+                        <p class="p2"><span>不幸的是，這樣的設計方式會強調各種CSS實作平台上的缺陷。即使是完全合乎標準的CSS語法，不同瀏覽器也會有不同的表現方式。而當你修好一邊，卻又讓另一邊出狀況的時候，那可真是讓人抓狂。請參考<a href="#">資源手冊</a>裡關於一些錯誤修正的資訊。完整的瀏覽器支援仍然是不切實際的夢想，我們也不想要你用精準地指定像素的程式碼來跨所有平台。不過還是請你盡可能地作測試。如果你的設計沒辦法在IE5+/Win與Mozilla上正常顯示（超過 90% 以上的人們使用），我們不可能接受它。</span></p>
+                        <p class="p3"><span>我們要求你提出原創作品。請遵守著作權法規。請盡可能不要使用有爭議的素材；我們可以接受高雅的裸體素材，但是拒絕不當的色情圖樣。</span></p>
+                        <p class="p4"><span>這是個示範，也是學習用的練習題。你可以保留圖片的完整著作權，但我們要求你用<a href="#">與本網站相同</a>的Creative Commons license釋出你的CSS作品，讓其他人可以從中學習。</span></p>
+                        <p class="p5"><span>頻寬由<a href="#">mediatemple</a>提供。</span></p>
+                    </div>
+                </div>
+                <div id="linkList">
+                    <div id="linkList2">
+                        <div id="lselect">
+                            <h3 class="select"><span>選擇一項設計：</span></h3>
+                            <ul>
+                                <li><a href="#">spring360</a> by <a href="#" class="c">Rene Hornig</a></li>
+                                <li><a href="#">Withering Beauty</a> by <a href="#" class="c">William Duffy</a></li>
+                                <li><a href="#">Tiny Blue</a> by <a href="#" class="c">Timo Virtanen</a></li>
+                                <li><a href="#">Retro Theater</a> by <a href="#" class="c">Eric Rogé</a></li>
+                                <li><a href="#">Lily Pond</a> by <a href="#" class="c">Rose Thorogood</a></li>
+                                <li><a href="#">Icicle Outback</a> by <a href="#" class="c">Timo Virtanen</a></li>
+                                <li><a href="#">CSS ZEN ARMY</a> by <a href="#" class="c">Carl Desmond</a></li>
+                                <li><a href="#">The Original</a> by <a href="#" class="c">Joachim Shotter</a></li>
+                            </ul>
+                        </div>
+                        <div id="larchives">
+                            <h3 class="archives"><span>資料彙整：</span></h3>
+                            <ul>
+                                <li><a href="#">下一個設計</a></li>
+                                <li><a href="#">前一個設計</a></li>
+                                <li><a href="#">瀏覽所有設計</a></li>
+                            </ul>
+                        </div>
+                        <div id="lresources">
+                            <h3 class="resources"><span>資源手冊：</span></h3>
+                            <ul>
+                                <li><a href="#">檢視這個設計的CSS</a></li>
+                                <li><a href="#">CSS資源手冊</a></li>
+                                <li><a href="#">FAQ</a></li>
+                                <li><a href="#">投稿</a></li>
+                                <li><a href="#">翻譯文件</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="footer">
+                    <a href="#">xhtml</a>
+                    <a href="#">css</a>
+                    <a href="#">cc</a>
+                    <a href="#">508</a>
+                    <a href="#">aaa</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 全屏式風格 -->
+        <section id="fullscreen" class="style-section">
+            <div id="container">
+                <div id="intro">
+                    <div id="pageHeader">
+                        <h1><span>css Zen Garden</span></h1>
+                        <h2><span>CSS設計之美</span></h2>
+                    </div>
+                    <div id="quickSummary">
+                        <p class="p1"><span>展示以CSS為基礎的設計方式能夠達到的視覺效果。只要選擇列表上的任一樣式表，就可以將它載入到這個頁面。</span></p>
+                        <p class="p2"><span>下載<a href="#">html</a>跟<a href="#">css</a>的範例檔案。</span></p>
+                    </div>
+                    <div id="preamble">
+                        <h3><span>開悟之路</span></h3>
+                        <p class="p1"><span>各家瀏覽器的專屬標籤、低相容度的DOM，或者是缺乏完整支援的CSS等遺跡，如今都散落在闇黑而荒涼的道路上。</span></p>
+                        <p class="p2"><span>今日，我們必須掃除腦海裡的過時技巧。感謝W3C、WaSP，以及瀏覽器作者們的努力不懈，我們終於能達到網站設計技術的開悟境界。</span></p>
+                        <p class="p3"><span>css Zen Garden「樣式表禪意花園」邀請您放鬆身心，冥想專家們的重要課題。讓我們以清晰的心靈之眼凝視，並且用嶄新、充滿活力的方式學習這項受人尊敬的古老技術，達到天人合一的境界。</span></p>
+                    </div>
+                </div>
+                <div id="supportingText">
+                    <div id="explanation">
+                        <h3><span>這是關於什麼？</span></h3>
+                        <p class="p1"><span>顯然平面設計師有必要認真看待CSS。Zen Garden致力於推廣使用、啟發靈感和鼓勵參與。你可以從瀏覽列表裡的設計著手。只要選擇列表上的任一樣式表，就可以將它載入到這個頁面。HTML程式碼都維持原狀，唯一改變的是使用的CSS檔案。沒錯，的確如此。</span></p>
+                        <p class="p2"><span>CSS具備完整控制超文字文件的能力。不過唯有當你把韁繩交給能從結構中創造美感的人們，用實例展示它的功能時，才能夠鼓舞人心。截至目前為止，網站結構設計師和程式員已經介紹過許多關於良好技巧與駭客手法的範例。平面設計師則還沒有在這個領域建立名聲。是需要改變的時候了。</span></p>
+                    </div>
+                    <div id="participation">
+                        <h3><span>參與</span></h3>
+                        <p class="p1"><span>我們只邀請平面設計師參與這項計畫。你必須修改這個頁面，所以得要有良好的CSS技巧。不過這份範例檔案已經詳盡地加上註解，即使是CSS初學者也能夠以此為出發點。請參考<a href="#">CSS資源手冊</a>，裡面有相關的進階教學與技巧說明。</span></p>
+                        <p class="p2"><span>你可以用你希望的任何方式修改樣式表，但是別更動HTML檔案。如果你從來都沒有這樣做過，也許會有點心生膽怯。不過你可以參考列表來深入地學習，並且拿範例檔案作為教學指南。</span></p>
+                        <p class="p3"><span>請下載<a href="#">html</a>跟<a href="#">css</a>的範例檔案，並且在自己的電腦上修改。在你完成你的傑作後（請別拿半成品投稿），先將CSS檔案上傳到你的網頁伺服器，再把檔案的網址<a href="#">寄給我們</a>。如果我們採用你的作品，就會自行下載相關圖片。最後成品會放在我們的伺服器上。</span></p>
+                    </div>
+                    <div id="benefits">
+                        <h3><span>益處</span></h3>
+                        <p class="p1"><span>你為什麼要參與這項計畫呢？因為可以展現你的實力、激發創作靈感，并且在設計以CSS為基礎的案例時，這項計畫可以當作參考用的資源。即使在今日這也是極為需要的。越來越多主流站台開始擁抱這項技術，但還是不夠。雖然現在還不成氣候，但總有一天這個展覽場地會成為歷史的寶藏。</span></p>
+                    </div>
+                    <div id="requirements">
+                        <h3><span>必要條件</span></h3>
+                        <p class="p1"><span>我們希望你盡可能地使用CSS1。CSS2則只可以使用已被廣泛支援的部分。css Zen Garden採用的是可行、實用的CSS語法，而不是些只能被 2% 觀眾瀏覽的超尖端技術。實際上，我們唯一的需求就只是你的CSS要合乎標準。</span></p>
+                        <p class="p2"><span>不幸的是，這樣的設計方式會強調各種CSS實作平台上的缺陷。即使是完全合乎標準的CSS語法，不同瀏覽器也會有不同的表現方式。而當你修好一邊，卻又讓另一邊出狀況的時候，那可真是讓人抓狂。請參考<a href="#">資源手冊</a>裡關於一些錯誤修正的資訊。完整的瀏覽器支援仍然是不切實際的夢想，我們也不想要你用精準地指定像素的程式碼來跨所有平台。不過還是請你盡可能地作測試。如果你的設計沒辦法在IE5+/Win與Mozilla上正常顯示（超過 90% 以上的人們使用），我們不可能接受它。</span></p>
+                        <p class="p3"><span>我們要求你提出原創作品。請遵守著作權法規。請盡可能不要使用有爭議的素材；我們可以接受高雅的裸體素材，但是拒絕不當的色情圖樣。</span></p>
+                        <p class="p4"><span>這是個示範，也是學習用的練習題。你可以保留圖片的完整著作權，但我們要求你用<a href="#">與本網站相同</a>的Creative Commons license釋出你的CSS作品，讓其他人可以從中學習。</span></p>
+                        <p class="p5"><span>頻寬由<a href="#">mediatemple</a>提供。</span></p>
+                    </div>
+                    <div id="footer">
+                        <a href="#">xhtml</a>
+                        <a href="#">css</a>
+                        <a href="#">cc</a>
+                        <a href="#">508</a>
+                        <a href="#">aaa</a>
+                    </div>
+                </div>
+                <div id="linkList">
+                    <div id="linkList2">
+                        <div id="lselect">
+                            <h3 class="select"><span>選擇一項設計：</span></h3>
+                            <ul>
+                                <li><a href="#">spring360</a> by <a href="#" class="c">Rene Hornig</a></li>
+                                <li><a href="#">Withering Beauty</a> by <a href="#" class="c">William Duffy</a></li>
+                                <li><a href="#">Tiny Blue</a> by <a href="#" class="c">Timo Virtanen</a></li>
+                                <li><a href="#">Retro Theater</a> by <a href="#" class="c">Eric Rogé</a></li>
+                                <li><a href="#">Lily Pond</a> by <a href="#" class="c">Rose Thorogood</a></li>
+                                <li><a href="#">Icicle Outback</a> by <a href="#" class="c">Timo Virtanen</a></li>
+                                <li><a href="#">CSS ZEN ARMY</a> by <a href="#" class="c">Carl Desmond</a></li>
+                                <li><a href="#">The Original</a> by <a href="#" class="c">Joachim Shotter</a></li>
+                            </ul>
+                        </div>
+                        <div id="larchives">
+                            <h3 class="archives"><span>資料彙整：</span></h3>
+                            <ul>
+                                <li><a href="#">下一個設計</a></li>
+                                <li><a href="#">前一個設計</a></li>
+                                <li><a href="#">瀏覽所有設計</a></li>
+                            </ul>
+                        </div>
+                        <div id="lresources">
+                            <h3 class="resources"><span>資源手冊：</span></h3>
+                            <ul>
+                                <li><a href="#">檢視這個設計的CSS</a></li>
+                                <li><a href="#">CSS資源手冊</a></li>
+                                <li><a href="#">FAQ</a></li>
+                                <li><a href="#">投稿</a></li>
+                                <li><a href="#">翻譯文件</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 兩欄風格 -->
+        <section id="two-column" class="style-section">
+            <div id="container">
+                <div id="intro">
+                    <div id="pageHeader">
+                        <h1><span>css Zen Garden</span></h1>
+                        <h2><span>CSS設計之美</span></h2>
+                    </div>
+                    <div id="quickSummary">
+                        <p class="p1"><span>展示以CSS為基礎的設計方式能夠達到的視覺效果。只要選擇列表上的任一樣式表，就可以將它載入到這個頁面。</span></p>
+                        <p class="p2"><span>下載<a href="#">html</a>跟<a href="#">css</a>的範例檔案。</span></p>
+                    </div>
+                    <div id="preamble">
+                        <h3><span>開悟之路</span></h3>
+                        <p class="p1"><span>各家瀏覽器的專屬標籤、低相容度的DOM，或者是缺乏完整支援的CSS等遺跡，如今都散落在闇黑而荒涼的道路上。</span></p>
+                        <p class="p2"><span>今日，我們必須掃除腦海裡的過時技巧。感謝W3C、WaSP，以及瀏覽器作者們的努力不懈，我們終於能達到網站設計技術的開悟境界。</span></p>
+                        <p class="p3"><span>css Zen Garden「樣式表禪意花園」邀請您放鬆身心，冥想專家們的重要課題。讓我們以清晰的心靈之眼凝視，並且用嶄新、充滿活力的方式學習這項受人尊敬的古老技術，達到天人合一的境界。</span></p>
+                    </div>
+                </div>
+                <div id="supportingText">
+                    <div id="explanation">
+                        <h3><span>這是關於什麼？</span></h3>
+                        <p class="p1"><span>顯然平面設計師有必要認真看待CSS。Zen Garden致力於推廣使用、啟發靈感和鼓勵參與。你可以從瀏覽列表裡的設計著手。只要選擇列表上的任一樣式表，就可以將它載入到這個頁面。HTML程式碼都維持原狀，唯一改變的是使用的CSS檔案。沒錯，的確如此。</span></p>
+                        <p class="p2"><span>CSS具備完整控制超文字文件的能力。不過唯有當你把韁繩交給能從結構中創造美感的人們，用實例展示它的功能時，才能夠鼓舞人心。截至目前為止，網站結構設計師和程式員已經介紹過許多關於良好技巧與駭客手法的範例。平面設計師則還沒有在這個領域建立名聲。是需要改變的時候了。</span></p>
+                    </div>
+                    <div id="participation">
+                        <h3><span>參與</span></h3>
+                        <p class="p1"><span>我們只邀請平面設計師參與這項計畫。你必須修改這個頁面，所以得要有良好的CSS技巧。不過這份範例檔案已經詳盡地加上註解，即使是CSS初學者也能夠以此為出發點。請參考<a href="#">CSS資源手冊</a>，裡面有相關的進階教學與技巧說明。</span></p>
+                        <p class="p2"><span>你可以用你希望的任何方式修改樣式表，但是別更動HTML檔案。如果你從來都沒有這樣做過，也許會有點心生膽怯。不過你可以參考列表來深入地學習，並且拿範例檔案作為教學指南。</span></p>
+                        <p class="p3"><span>請下載<a href="#">html</a>跟<a href="#">css</a>的範例檔案，並且在自己的電腦上修改。在你完成你的傑作後（請別拿半成品投稿），先將CSS檔案上傳到你的網頁伺服器，再把檔案的網址<a href="#">寄給我們</a>。如果我們採用你的作品，就會自行下載相關圖片。最後成品會放在我們的伺服器上。</span></p>
+                    </div>
+                    <div id="benefits">
+                        <h3><span>益處</span></h3>
+                        <p class="p1"><span>你為什麼要參與這項計畫呢？因為可以展現你的實力、激發創作靈感，并且在設計以CSS為基礎的案例時，這項計畫可以當作參考用的資源。即使在今日這也是極為需要的。越來越多主流站台開始擁抱這項技術，但還是不夠。雖然現在還不成氣候，但總有一天這個展覽場地會成為歷史的寶藏。</span></p>
+                    </div>
+                    <div id="requirements">
+                        <h3><span>必要條件</span></h3>
+                        <p class="p1"><span>我們希望你盡可能地使用CSS1。CSS2則只可以使用已被廣泛支援的部分。css Zen Garden採用的是可行、實用的CSS語法，而不是些只能被 2% 觀眾瀏覽的超尖端技術。實際上，我們唯一的需求就只是你的CSS要合乎標準。</span></p>
+                        <p class="p2"><span>不幸的是，這樣的設計方式會強調各種CSS實作平台上的缺陷。即使是完全合乎標準的CSS語法，不同瀏覽器也會有不同的表現方式。而當你修好一邊，卻又讓另一邊出狀況的時候，那可真是讓人抓狂。請參考<a href="#">資源手冊</a>裡關於一些錯誤修正的資訊。完整的瀏覽器支援仍然是不切實際的夢想，我們也不想要你用精準地指定像素的程式碼來跨所有平台。不過還是請你盡可能地作測試。如果你的設計沒辦法在IE5+/Win與Mozilla上正常顯示（超過 90% 以上的人們使用），我們不可能接受它。</span></p>
+                        <p class="p3"><span>我們要求你提出原創作品。請遵守著作權法規。請盡可能不要使用有爭議的素材；我們可以接受高雅的裸體素材，但是拒絕不當的色情圖樣。</span></p>
+                        <p class="p4"><span>這是個示範，也是學習用的練習題。你可以保留圖片的完整著作權，但我們要求你用<a href="#">與本網站相同</a>的Creative Commons license釋出你的CSS作品，讓其他人可以從中學習。</span></p>
+                        <p class="p5"><span>頻寬由<a href="#">mediatemple</a>提供。</span></p>
+                    </div>
+                    <div id="footer">
+                        <a href="#">xhtml</a>
+                        <a href="#">css</a>
+                        <a href="#">cc</a>
+                        <a href="#">508</a>
+                        <a href="#">aaa</a>
+                    </div>
+                </div>
+                <div id="linkList">
+                    <div id="linkList2">
+                        <div id="lselect">
+                            <h3 class="select"><span>選擇一項設計：</span></h3>
+                            <ul>
+                                <li><a href="#">spring360</a> by <a href="#" class="c">Rene Hornig</a></li>
+                                <li><a href="#">Withering Beauty</a> by <a href="#" class="c">William Duffy</a></li>
+                                <li><a href="#">Tiny Blue</a> by <a href="#" class="c">Timo Virtanen</a></li>
+                                <li><a href="#">Retro Theater</a> by <a href="#" class="c">Eric Rogé</a></li>
+                                <li><a href="#">Lily Pond</a> by <a href="#" class="c">Rose Thorogood</a></li>
+                                <li><a href="#">Icicle Outback</a> by <a href="#" class="c">Timo Virtanen</a></li>
+                                <li><a href="#">CSS ZEN ARMY</a> by <a href="#" class="c">Carl Desmond</a></li>
+                                <li><a href="#">The Original</a> by <a href="#" class="c">Joachim Shotter</a></li>
+                            </ul>
+                        </div>
+                        <div id="larchives">
+                            <h3 class="archives"><span>資料彙整：</span></h3>
+                            <ul>
+                                <li><a href="#">下一個設計</a></li>
+                                <li><a href="#">前一個設計</a></li>
+                                <li><a href="#">瀏覽所有設計</a></li>
+                            </ul>
+                        </div>
+                        <div id="lresources">
+                            <h3 class="resources"><span>資源手冊：</span></h3>
+                            <ul>
+                                <li><a href="#">檢視這個設計的CSS</a></li>
+                                <li><a href="#">CSS資源手冊</a></li>
+                                <li><a href="#">FAQ</a></li>
+                                <li><a href="#">投稿</a></li>
+                                <li><a href="#">翻譯文件</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ===== JavaScript：切換風格 ===== -->
+    <script>
+        function switchStyle(styleName, btn) {
+            // 隱藏所有風格區域
+            document.querySelectorAll('.style-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // 顯示選中的風格
+            document.getElementById(styleName).classList.add('active');
+
+            // 更新按鈕狀態
+            document.querySelectorAll('.navbar button').forEach(button => {
+                button.classList.remove('active');
+            });
+            btn.classList.add('active');
+
+            // 切換 CSS 檔案
+            document.getElementById('css-fullscreen').disabled = (styleName !== 'fullscreen');
+            document.getElementById('css-three-column').disabled = (styleName !== 'three-column');
+            document.getElementById('css-two-column').disabled = (styleName !== 'two-column');
+        }
+    </script>
+
+</body>
+</html>

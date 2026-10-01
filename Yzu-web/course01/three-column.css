@@ -1,0 +1,205 @@
+/* ============================================
+   三欄風格 (Three-Column Style)
+   CSS Zen Garden - 三欄式佈局
+   ============================================ */
+
+/* --- 基礎重置 --- */
+#three-column * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#three-column body {
+    font-family: Georgia, "Times New Roman", "PMingLiU", serif;
+    background: #e8e0d0;
+    color: #2c2c2c;
+    line-height: 1.7;
+}
+
+/* --- 主容器：三欄佈局 --- */
+#three-column #container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-areas:
+        "header header header"
+        "left main right"
+        "footer footer footer";
+    min-height: 100vh;
+    background: #fff;
+    box-shadow: 0 0 30px rgba(0,0,0,0.1);
+}
+
+/* --- 左側欄：開悟之路 --- */
+#three-column #preamble {
+    grid-area: left;
+    background: #f0ece0;
+    border-right: 1px solid #d0c8b8;
+    padding: 2rem 1rem;
+}
+
+/* --- 介紹區域 --- */
+#three-column #intro {
+    grid-area: header;
+    padding: 3rem 2rem;
+    text-align: center;
+    background: linear-gradient(to bottom, #1a3a4a, #2a5a6a);
+    color: #e0f0f0;
+}
+
+#three-column #pageHeader h1 {
+    font-size: 3rem;
+    font-weight: normal;
+    letter-spacing: 0.3rem;
+    color: #e0f0f0;
+}
+
+#three-column #pageHeader h2 {
+    font-size: 1.2rem;
+    font-weight: normal;
+    font-style: italic;
+    color: #a0c0d0;
+    margin-top: 0.5rem;
+}
+
+#three-column #quickSummary {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+}
+
+#three-column #quickSummary p {
+    color: #e0f0f0;
+    font-size: 0.95rem;
+}
+
+#three-column #preamble h3 {
+    color: #1a3a4a;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #1a3a4a;
+}
+
+#three-column #preamble p {
+    color: #4a6a7a;
+    font-size: 0.85rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+}
+
+/* --- 右側欄：連結列表 --- */
+#three-column #linkList {
+    grid-area: right;
+    padding: 2rem 1rem;
+    background: #f0ece0;
+    border-left: 1px solid #d0c8b8;
+}
+
+#three-column #linkList2 h3 {
+    font-size: 0.95rem;
+    color: #1a3a4a;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #1a3a4a;
+}
+
+#three-column #linkList2 ul {
+    list-style: none;
+}
+
+#three-column #linkList2 li {
+    margin-bottom: 0.6rem;
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+#three-column #linkList2 a {
+    color: #4a6a7a;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+#three-column #linkList2 a:hover {
+    color: #1a3a4a;
+    text-decoration: underline;
+}
+
+/* --- 中間主要內容 --- */
+#three-column #supportingText {
+    grid-area: main;
+    padding: 3rem 2.5rem;
+}
+
+#three-column #supportingText h3 {
+    font-size: 1.6rem;
+    color: #1a3a4a;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+#three-column #supportingText p {
+    margin-bottom: 1.2rem;
+    color: #3a3a3a;
+    font-size: 0.95rem;
+    text-align: justify;
+}
+
+#three-column #explanation, #participation, #benefits, #requirements {
+    margin-bottom: 2.5rem;
+}
+
+/* --- 隱藏 extraDiv（開悟之路已移到左欄） --- */
+#three-column #extraDiv1 {
+    display: none;
+}
+
+/* --- 頁尾 --- */
+#three-column #footer {
+    grid-area: footer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.5rem;
+    background: #1a3a4a;
+}
+
+#three-column #footer a {
+    color: #e0f0f0;
+    text-decoration: none;
+    font-size: 0.85rem;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid #e0f0f0;
+    border-radius: 3px;
+    transition: all 0.3s;
+}
+
+#three-column #footer a:hover {
+    background: #e0f0f0;
+    color: #1a3a4a;
+}
+
+/* --- 隱藏其他 extraDiv --- */
+#three-column #extraDiv2, #extraDiv3, #extraDiv4, #extraDiv5, #extraDiv6 {
+    display: none;
+}
+
+/* --- 響應式 --- */
+@media (max-width: 900px) {
+    #three-column #container {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "main"
+            "footer";
+    }
+
+    #three-column #linkList, #preamble {
+        display: none;
+    }
+}

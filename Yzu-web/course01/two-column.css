@@ -1,0 +1,194 @@
+/* ============================================
+   兩欄風格 (Two-Column Style)
+   CSS Zen Garden - 兩欄式佈局
+   ============================================ */
+
+/* --- 基礎重置 --- */
+#two-column * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#two-column body {
+    font-family: "Segoe UI", "Microsoft JhengHei", sans-serif;
+    background: #e8e8e8;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* --- 主容器：兩欄佈局 --- */
+#two-column #container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-areas:
+        "header header"
+        "sidebar main"
+        "footer footer";
+    min-height: 100vh;
+    background: #fff;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+}
+
+/* --- 介紹區域 --- */
+#two-column #intro {
+    grid-area: header;
+    padding: 2.5rem 2rem;
+    background: #1a1a2e;
+    color: #fff;
+}
+
+#two-column #pageHeader {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+#two-column #pageHeader h1 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 0.2rem;
+    color: #e94560;
+}
+
+#two-column #pageHeader h2 {
+    font-size: 1rem;
+    font-weight: 300;
+    color: #a0a0b0;
+    margin-top: 0.3rem;
+}
+
+#two-column #quickSummary {
+    padding: 1rem;
+    background: rgba(255,255,255,0.05);
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+#two-column #quickSummary p {
+    color: #c0c0d0;
+    font-size: 0.9rem;
+}
+
+#two-column #preamble {
+    padding: 1rem;
+    background: rgba(255,255,255,0.05);
+    border-radius: 4px;
+}
+
+#two-column #preamble h3 {
+    color: #e94560;
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+}
+
+#two-column #preamble p {
+    color: #a0a0b0;
+    font-size: 0.85rem;
+    margin-bottom: 0.8rem;
+}
+
+/* --- 側邊欄：連結列表 --- */
+#two-column #linkList {
+    grid-area: sidebar;
+    padding: 2rem 1.5rem;
+    background: #16213e;
+}
+
+#two-column #linkList2 h3 {
+    font-size: 0.9rem;
+    color: #e94560;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #333;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}
+
+#two-column #linkList2 ul {
+    list-style: none;
+}
+
+#two-column #linkList2 li {
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+#two-column #linkList2 a {
+    color: #a0a0b0;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+#two-column #linkList2 a:hover {
+    color: #e94560;
+}
+
+/* --- 主要內容 --- */
+#two-column #supportingText {
+    grid-area: main;
+    padding: 2.5rem 2rem;
+}
+
+#two-column #supportingText h3 {
+    font-size: 1.4rem;
+    color: #1a1a2e;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e94560;
+}
+
+#two-column #supportingText p {
+    margin-bottom: 1rem;
+    color: #444;
+    font-size: 0.9rem;
+}
+
+#two-column #explanation, #participation, #benefits, #requirements {
+    margin-bottom: 2rem;
+}
+
+/* --- 頁尾 --- */
+#two-column #footer {
+    grid-area: footer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
+    background: #0f0f1a;
+}
+
+#two-column #footer a {
+    color: #a0a0b0;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: color 0.3s;
+}
+
+#two-column #footer a:hover {
+    color: #e94560;
+}
+
+/* --- 隱藏 extraDiv --- */
+#two-column #extraDiv1, #extraDiv2, #extraDiv3,
+#two-column #extraDiv4, #extraDiv5, #extraDiv6 {
+    display: none;
+}
+
+/* --- 響應式 --- */
+@media (max-width: 768px) {
+    #two-column #container {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "main"
+            "footer";
+    }
+
+    #two-column #linkList {
+        display: none;
+    }
+}
