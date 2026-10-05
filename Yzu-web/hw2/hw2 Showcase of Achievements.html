@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 多樣式切換技術</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Microsoft JhengHei", Arial, sans-serif;
+            line-height: 1.8;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .content {
+            padding: 40px;
+        }
+        h2 {
+            color: #2c3e50;
+            font-size: 2em;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+        }
+        h3 {
+            color: #34495e;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+            padding-left: 15px;
+            border-left: 4px solid #e74c3c;
+        }
+        h4 {
+            color: #555;
+            margin: 20px 0 10px 0;
+        }
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        .code-block {
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #856404;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .comparison-table th {
+            background: #3498db;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        .comparison-table td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .comparison-table tr:hover {
+            background: #f5f5f5;
+        }
+        .tip-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .tip-box::before {
+            content: "💡 重點提示：";
+            font-weight: bold;
+            color: #155724;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .example-box {
+            background: #e8f4f8;
+            border: 2px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .style-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 20px;
+margin: 20px 0;
+}
+@media (max-width: 768px) {
+.style-grid {
+grid-template-columns: 1fr;
+}
+}
+        .style-card {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s;
+			min-height: 260px;
+        }
+        .style-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .color-preview {
+            width: 100%;
+            height: 80px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .demo-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 10px 5px;
+            transition: all 0.3s;
+        }
+        .demo-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+        .technique-list {
+            background: #fff8e1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🎨 CSS 多樣式切換技術</h1>
+        <p>簡化版教學講義 - 專注核心技術</p>
+        <p style="margin-top: 10px; font-size: 0.9em;">學生:陳恩浩 | 日期：2026-10-05</p>
+    </header>
+
+    <div class="content">
+        
+        <!-- 第一部分：專案概述 -->
+        <section>
+            <h2>1. 專案核心概念</h2>
+            
+            <div class="tip-box">
+                本專案的核心理念：<strong>相同的 HTML 結構 + 不同的 CSS 樣式 = 完全不同的視覺效果</strong>
+            </div>
+
+<h3>1.1 四種樣式風格特色</h3>
+ 
+<div class="style-grid">
+<div class="style-card">
+<div class="color-preview" style="background: linear-gradient(135deg, steelblue, lightsteelblue);"></div>
+<h4>🎨 莫蘭迪風格</h4>
+<p><strong>布局：</strong>單欄閱讀式設計</p>
+<p><strong>特色：</strong>柔和配色與舒適排版</p>
+<p><strong>適用：</strong>部落格、文章網站</p>
+</div>
+ 
+<div class="style-card">
+<div class="color-preview" style="background: linear-gradient(135deg, wheat, saddlebrown);"></div>
+<h4>📰 復古報紙風</h4>
+<p><strong>布局：</strong>雙欄閱讀版面</p>
+<p><strong>特色：</strong>模擬傳統報紙排版</p>
+<p><strong>適用：</strong>新聞網站、專題文章</p>
+</div>
+ 
+<div class="style-card">
+<div class="color-preview" style="background: linear-gradient(135deg, #c85a17, #2a2d32);"></div>
+<h4>🏭 工業藍圖風</h4>
+<p><strong>布局：</strong>左右資訊欄配置</p>
+<p><strong>特色：</strong>粗獷金屬與工程設計感</p>
+<p><strong>適用：</strong>技術文件與系統展示</p>
+</div>
+ 
+<div class="style-card">
+<div class="color-preview" style="background: linear-gradient(135deg, springgreen, cyan);"></div>
+<h4>💻 極客電子風</h4>
+<p><strong>布局：</strong>終端機資訊面板</p>
+<p><strong>特色：</strong>霓虹發光與科技感介面</p>
+<p><strong>適用：</strong>科技產品與程式開發網站</p>
+</div>
+</div>
+        </section>
+
+        <!-- 第二部分：簡化的 CSS 技巧 -->
+        <section>
+            <h2>2. 核心 CSS 技術（簡化版）</h2>
+
+            <h3>2.1 最簡單的漸層語法</h3>
+            <div class="code-block">
+<code>/* 基本漸層（從上到下）*/
+background: linear-gradient(顏色1, 顏色2);
+background: linear-gradient(Blue, LightBlue);
+
+/* 對角線漸層（最常用）*/
+background: linear-gradient(135deg, 顏色1, 顏色2);
+background: linear-gradient(135deg, Teal, MediumTurquoise);</code>
+            </div>
+
+            <div class="tip-box">
+                <strong>135deg</strong> 是最常用的對角線角度，創造從左上到右下的自然漸層效果。
+            </div>
+
+            <h3>2.2 最簡單的陰影</h3>
+            <div class="code-block">
+<code>/* 基本陰影 */
+box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+/*         X  Y 模糊  顏色（透明度20%）*/
+
+/* 更深的陰影 */
+box-shadow: 0 4px 12px rgba(0,0,0,0.5);</code>
+            </div>
+
+            <h3>2.3 最簡單的圓角</h3>
+            <div class="code-block">
+<code>/* 統一圓角 */
+border-radius: 8px;
+
+/* 完全圓形按鈕 */
+border-radius: 20px;</code>
+            </div>
+
+            <h3>2.4 最簡單的過渡動畫</h3>
+            <div class="code-block">
+<code>/* 一行搞定所有動畫 */
+transition: all 0.3s;
+
+/* 配合 hover 使用 */
+.menuitem {
+    transition: all 0.3s;
+}
+.menuitem:hover {
+    transform: scale(1.05);  /* 放大 5% */
+}</code>
+            </div>
+
+            <div class="example-box">
+                <h4>常用的 transform 效果</h4>
+                <ul>
+                    <li><code>transform: scale(1.05);</code> - 放大 5%</li>
+                    <li><code>transform: translateX(5px);</code> - 向右移動 5px</li>
+                    <li><code>transform: translateY(-3px);</code> - 向上移動 3px</li>
+                    <li><code>transform: rotate(5deg);</code> - 旋轉 5 度</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 第三部分：布局技術 -->
+ <section>
+<h2>3. 四種版面布局方式對比</h2>
+ 
+<table class="comparison-table">
+<tr>
+<th>樣式</th>
+<th>版面配置</th>
+<th>關鍵 CSS</th>
+<th>設計特色</th>
+</tr>
+ 
+<tr>
+<td>莫蘭迪風格</td>
+<td>單欄閱讀式</td>
+<td><code>display:flex; flex-direction:column;</code></td>
+<td>適合文章閱讀</td>
+</tr>
+ 
+<tr>
+<td>復古報紙風</td>
+<td>雙欄報紙布局</td>
+<td><code>column-count:2;</code></td>
+<td>模擬傳統報紙排版</td>
+</tr>
+ 
+<tr>
+<td>工業藍圖風</td>
+<td>側邊欄布局</td>
+<td><code>float:left;</code></td>
+<td>強調結構與功能</td>
+</tr>
+ 
+<tr>
+<td>極客電子風</td>
+<td>資訊面板布局</td>
+<td><code>position:absolute;</code></td>
+<td>呈現科技儀表板效果</td>
+</tr>
+</table>
+ 
+<h3>3.1 單欄閱讀式布局（莫蘭迪風）</h3>
+ 
+<div class="code-block">
+<code>
+.container {
+display: flex;
+flex-direction: column;
+}
+ 
+#main {
+width: 100%;
+}
+</code>
+</div>
+ 
+<p>
+採用單欄設計，將閱讀焦點集中於主要內容，
+提供舒適且簡潔的瀏覽體驗。
+</p>
+ 
+<h3>3.2 雙欄報紙布局（復古報紙風）</h3>
+ 
+<div class="code-block">
+<code>
+.editorial-columns {
+column-count: 2;
+column-gap: 25px;
+}
+</code>
+</div>
+ 
+<p>
+利用 CSS 多欄排版技術模擬傳統報紙版面，
+提升資訊密度與閱讀效率。
+</p>
+ 
+<h3>3.3 工業資訊布局（工業藍圖風）</h3>
+ 
+<div class="code-block">
+<code>
+#menubar {
+width: 220px;
+float: left;
+}
+ 
+#main {
+margin-left: 240px;
+}
+</code>
+</div>
+ 
+<p>
+透過側邊選單與主要內容分離，
+營造工業控制介面與工程設計圖的視覺效果。
+</p>
+ 
+<h3>3.4 電子面板布局（極客電子風）</h3>
+ 
+<div class="code-block">
+<code>
+#sidebar {
+position: absolute;
+right: 0;
+width: 270px;
+}
+</code>
+</div>
+ 
+<p>
+使用獨立資訊面板配置，
+搭配霓虹效果呈現未來科技感介面設計。
+</p>
+</section>
+
+        <!-- 第四部分：JavaScript -->
+        <section>
+            <h2>4. JavaScript 樣式切換（超簡單）</h2>
+
+            <h3>4.1 核心代碼（只需3個函數）</h3>
+            <div class="code-block">
+<code>// 函數 1：關閉所有樣式
+function noStyles() {
+    document.styleSheets[0].disabled = true;
+    document.styleSheets[1].disabled = true;
+    document.styleSheets[2].disabled = true;
+    document.styleSheets[3].disabled = true;
+}
+
+// 函數 2：開啟指定樣式
+function reStyle(n) {
+    noStyles();  // 先全部關閉
+    document.styleSheets[n].disabled = false;  // 開啟第 n 個
+}
+
+// 函數 3：初始化（頁面載入時執行）
+reStyle(0);  // 預設啟用第一個樣式</code>
+            </div>
+
+            <h3>4.2 HTML 中如何使用</h3>
+            <div class="code-block">
+<code>&lt;!-- 直接在按鈕上綁定 onclick 事件 --&gt;
+&lt;li onclick="reStyle(0)"&gt;海洋藍綠&lt;/li&gt;
+&lt;li onclick="reStyle(1)"&gt;暖陽橘紅&lt;/li&gt;
+&lt;li onclick="reStyle(2)"&gt;春日綠意&lt;/li&gt;
+&lt;li onclick="reStyle(3)"&gt;午夜深藍&lt;/li&gt;</code>
+            </div>
+
+            <div class="tip-box">
+                <strong>工作原理：</strong>
+                <ol>
+                    <li>瀏覽器載入所有 &lt;style&gt; 標籤</li>
+                    <li>document.styleSheets 陣列包含所有樣式表</li>
+                    <li>設定 disabled = true 可以停用樣式</li>
+                    <li>設定 disabled = false 可以啟用樣式</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- 第五部分：配色技巧 -->
+        <section>
+            <h2>5. 快速配色技巧</h2>
+
+            <h3>5.1 同色系配色法（最簡單）</h3>
+            <div class="technique-list">
+                <h4>藍色系家族</h4>
+                <p>淺 → 中 → 深：<code>LightCyan → SkyBlue → Teal → Navy</code></p>
+                
+                <h4>橘紅色系家族</h4>
+                <p>淺 → 中 → 深：<code>Bisque → Coral → OrangeRed → DarkRed</code></p>
+                
+                <h4>綠色系家族</h4>
+                <p>淺 → 中 → 深：<code>Honeydew → LimeGreen → ForestGreen → DarkGreen</code></p>
+            </div>
+
+            <h3>5.2 快速選色公式</h3>
+            <div class="example-box">
+                <ol>
+                    <li><strong>背景漸層：</strong>選一個淺色 + 一個中間色</li>
+                    <li><strong>主要區塊：</strong>選一個中間色 + 一個深色</li>
+                    <li><strong>強調色：</strong>選同色系最深或最亮的顏色</li>
+                    <li><strong>文字色：</strong>深色背景用淺色文字，淺色背景用深色文字</li>
+                </ol>
+            </div>
+
+            <h3>5.3 對比色使用（進階）</h3>
+            <div class="code-block">
+<code>/* 藍 + 橙（經典對比）*/
+主色：Navy, RoyalBlue
+強調：Orange, Gold
+
+/* 綠 + 紅（聖誕配色）*/
+主色：ForestGreen, LimeGreen
+強調：Crimson, Coral
+
+/* 紫 + 黃（皇家配色）*/
+主色：DarkViolet, Purple
+強調：Gold, Yellow</code>
+            </div>
+        </section>
+
+        <!-- 第六部分：常見問題 -->
+        <section>
+            <h2>6. 常見問題與解決方案</h2>
+
+            <h3>Q1: 為什麼切換樣式後布局亂掉？</h3>
+            <div class="example-box">
+                <p><strong>原因：</strong>忘記清除浮動（float）</p>
+                <p><strong>解決：</strong>在容器加上 <code>overflow: auto;</code> 或在後面的元素加上 <code>clear: both;</code></p>
+            </div>
+
+            <h3>Q2: 為什麼陰影或圓角不見了？</h3>
+            <div class="example-box">
+                <p><strong>原因：</strong>舊版瀏覽器不支援</p>
+                <p><strong>解決：</strong>這些都是 CSS3 屬性，IE9 以下不支援，建議升級瀏覽器</p>
+            </div>
+
+            <h3>Q3: 如何測試不同樣式？</h3>
+            <div class="example-box">
+                <p><strong>方法：</strong>使用瀏覽器開發者工具（F12）</p>
+                <ol>
+                    <li>按 F12 打開開發者工具</li>
+                    <li>切換到 Elements 或 元素 標籤頁</li>
+                    <li>選擇元素，在 Styles 面板即時修改 CSS</li>
+                    <li>確認效果後複製到程式碼中</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- 第七部分：練習題 -->
+        <section>
+            <h2>7. 課堂練習</h2>
+
+            <div style="background: #fff8e1; padding: 20px; border-radius: 8px; border: 2px dashed #ff9800;">
+                <h3 style="color: #f57c00; border: none; padding: 0; margin-bottom: 15px;">📝 基礎練習（30分鐘）</h3>
+                
+                <h4>練習 1：修改顏色（10分鐘）</h4>
+                <p>將「海洋藍綠」主題改成「粉紅主題」，使用以下顏色：</p>
+                <ul>
+                    <li>背景：Pink, LightPink</li>
+                    <li>主區塊：HotPink, DeepPink</li>
+                    <li>文字：White</li>
+                </ul>
+
+                <h4>練習 2：調整動畫（10分鐘）</h4>
+                <p>修改按鈕 hover 效果：</p>
+                <ul>
+                    <li>改成向上移動（translateY）</li>
+                    <li>調整動畫速度為 0.5 秒</li>
+                    <li>加上旋轉效果（rotate）</li>
+                </ul>
+
+                <h4>練習 3：創建新樣式（10分鐘）</h4>
+                <p>創建第五個樣式表「紫色夢幻」：</p>
+                <ul>
+                    <li>使用紫色系：Lavender, Purple, DarkViolet</li>
+                    <li>採用頂部導航布局</li>
+                    <li>加入漸層和陰影效果</li>
+                </ul>
+            </div>
+
+            <div style="background: #e8f4f8; padding: 20px; border-radius: 8px; margin-top: 20px; border: 2px solid #3498db;">
+                <h3 style="color: #2980b9; border: none; padding: 0; margin-bottom: 15px;">🚀 進階挑戰（60分鐘）</h3>
+                
+                <h4>挑戰 1：響應式改造</h4>
+                <p>為專案添加手機版支援（使用 @media 查詢）</p>
+                
+                <h4>挑戰 2：添加新功能</h4>
+                <p>在 JavaScript 中加入：</p>
+                <ul>
+                    <li>記住用戶選擇（localStorage）</li>
+                    <li>自動套用上次的樣式</li>
+                    <li>添加「隨機樣式」按鈕</li>
+                </ul>
+
+                <h4>挑戰 3：創意設計</h4>
+                <p>設計一個完全不同風格的樣式表，要求：</p>
+                <ul>
+                    <li>使用本講義未提到的顏色組合</li>
+                    <li>嘗試新的布局方式</li>
+                    <li>加入自己的創意元素</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 總結 -->
+        <section>
+            <h2>8. 重點總結</h2>
+            
+            <div class="tip-box">
+                <strong>核心技術清單：</strong>
+                <ol>
+                    <li><code>linear-gradient(135deg, 顏色1, 顏色2)</code> - 對角線漸層</li>
+                    <li><code>box-shadow: 0 4px 8px rgba(0,0,0,0.2)</code> - 陰影效果</li>
+                    <li><code>border-radius: 8px</code> - 圓角</li>
+                    <li><code>transition: all 0.3s</code> - 平滑動畫</li>
+                    <li><code>transform: scale(1.05)</code> - 放大效果</li>
+                    <li><code>float: left/right</code> - 側邊欄布局</li>
+                    <li><code>display: inline-block</code> - 橫向排列</li>
+                    <li><code>document.styleSheets[n].disabled</code> - 切換樣式</li>
+                </ol>
+            </div>
+
+            <div class="example-box">
+                <h4>學習路徑建議</h4>
+                <ol>
+                    <li>先理解 HTML 結構（不要修改）</li>
+                    <li>學會基本的 CSS 屬性（顏色、大小、間距）</li>
+                    <li>掌握本講義的 8 個核心技術</li>
+                    <li>多實驗不同的顏色組合</li>
+                    <li>嘗試創建自己的樣式</li>
+                </ol>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <h3>📚 參考資源</h3>
+        <p>HTML Color Names: <a href="https://htmlcolorcodes.com/color-names/" style="color: #3498db;">https://htmlcolorcodes.com/color-names/</a></p>
+        <p>CSS Gradient Generator: <a href="https://cssgradient.io/" style="color: #3498db;">https://cssgradient.io/</a></p>
+        <br>
+        <a href="cssdemo_enhanced.html" class="demo-button">查看示範檔案</a>
+        <br><br>
+        <p>學生:陳恩浩 | 版本：v1.0 | 日期：2026-10-05</p>
+    </footer>
+</div>
+
+</body>
+</html>
