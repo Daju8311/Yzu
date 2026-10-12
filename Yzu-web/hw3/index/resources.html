@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>網路資源與設施借用 | 元智大學資訊工程學系</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { theme: { extend: { colors: { yzu: { blue: '#0055A5', cyan: '#00D2FF', dark: '#0B132B', card: '#1C2541', accent: '#48CAE4' } } } } }
+  </script>
+  <style>body { font-family: 'Noto Sans TC', sans-serif; background-color: #070B19; color: #E2E8F0; }</style>
+</head>
+<body class="relative overflow-x-hidden">
+  <!-- 導覽列 -->
+  <nav class="sticky top-0 z-50 bg-yzu-dark/95 backdrop-blur-lg border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center space-x-3">
+        <img src="origin-logo.png" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Yuan_Ze_University_logo.svg/512px-Yuan_Ze_University_logo.svg.png'" class="w-10 h-10 object-contain">
+        <div class="text-lg font-bold text-white">元智大學 <span class="text-yzu-cyan">資訊工程學系</span></div>
+      </a>
+      <a href="index.html" class="text-xs font-mono text-yzu-cyan hover:underline"><i class="fa-solid fa-house mr-1"></i> 返回首頁</a>
+    </div>
+  </nav>
+
+  <!-- 主要內容區 -->
+  <div class="max-w-5xl mx-auto px-4 py-12 space-y-12">
+    <!-- 麵包屑導航 -->
+    <div class="text-sm font-mono text-slate-400 mb-4"><a href="index.html" class="hover:text-yzu-cyan">首頁</a> / <span class="text-yzu-cyan">資源</span></div>
+    
+    <!-- 資源總覽容器 -->
+    <div class="bg-yzu-card border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-2xl space-y-8">
+      <h1 class="text-3xl font-extrabold text-white border-b border-slate-800 pb-4 flex items-center gap-3">
+        <i class="fa-solid fa-laptop-code text-yzu-cyan"></i> 網路資源與設施借用辦法
+      </h1>
+      <p class="text-slate-300 text-sm leading-relaxed">
+        提供全系師生各項教學實驗室、系所空間借用流程說明，以及設備借用方法與官方社群資源。
+      </p>
+
+      <!-- 資源清單項目 -->
+      <div class="space-y-4">
+        <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+          <div>
+            <div class="text-white font-bold text-base"><i class="fa-solid fa-file-pdf text-red-400 mr-2"></i> 空間（教室）借用流程與辦法</div>
+            <p class="text-xs text-slate-400 mt-1">詳細規範系所專用教室、會議室與實驗室之借用與登記流程說明文件。</p>
+          </div>
+          <a href="https://www.cse.yzu.edu.tw/api/download/Space_process.pdf" target="_blank" class="px-4 py-2 bg-yzu-blue/30 text-yzu-cyan text-xs font-mono rounded-lg hover:bg-yzu-blue/50 border border-yzu-cyan/30 whitespace-nowrap">
+            <i class="fa-solid fa-download mr-1"></i> 下載 PDF 檔案
+          </a>
+        </div>
+
+        <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+          <div>
+            <div class="text-white font-bold text-base"><i class="fa-solid fa-screwdriver-wrench text-yzu-cyan mr-2"></i> 設備借用方法</div>
+            <p class="text-xs text-slate-400 mt-1">提供教學硬體、簡報與實作設備之登記與歸還辦法。</p>
+          </div>
+          <a href="#" class="px-4 py-2 bg-slate-800 text-slate-300 text-xs font-mono rounded-lg hover:bg-slate-700 border border-slate-700 whitespace-nowrap">
+            查看說明
+          </a>
+        </div>
+
+        <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+          <div>
+            <div class="text-white font-bold text-base flex items-center gap-2">
+              <i class="fa-brands fa-facebook text-blue-400"></i> 元智資工系 Facebook 官方粉專
+            </div>
+            <p class="text-xs text-slate-400 mt-1">即時獲取系所活動、專題競賽與社群動態。</p>
+          </div>
+          <a href="https://www.facebook.com/yzucse" target="_blank" class="px-4 py-2 bg-blue-600/30 text-blue-300 text-xs font-mono rounded-lg hover:bg-blue-600/50 border border-blue-400/30 whitespace-nowrap">
+            造訪粉專
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

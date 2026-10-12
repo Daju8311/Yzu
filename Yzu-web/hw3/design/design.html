@@ -1,0 +1,49 @@
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+  <!-- 方案 A -->
+  <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-800 space-y-3">
+    <div class="text-yzu-cyan font-bold text-base">方案 A：極簡現代風</div>
+    <p class="text-xs text-slate-400"><strong>資訊組織：</strong>採左右雙欄對稱排版，資訊極度精簡，強調留白。</p>
+    <p class="text-xs text-slate-400"><strong>視覺層級：</strong>以大標題與乾淨卡片襯托，適合喜歡純粹閱讀的使用者。</p>
+    <p class="text-xs text-slate-400"><strong>色彩角色：</strong>白底灰階搭配溫和的 YZU 藍，呈現高冷洗鍊感。</p>
+  </div>
+
+  <!-- 方案 B -->
+  <div class="bg-slate-900/80 p-5 rounded-xl border border-yzu-cyan/50 space-y-3 shadow-lg shadow-yzu-cyan/10">
+    <div class="text-yzu-cyan font-bold text-base flex items-center justify-between">
+      <span>方案 B：賽博未來風</span>
+      <span class="text-[10px] bg-yzu-cyan/20 text-yzu-cyan px-2 py-0.5 rounded font-mono">已選定</span>
+    </div>
+    <p class="text-xs text-slate-300"><strong>資訊組織：</strong>模組化非對稱網格，首頁直接呈現四大前瞻研究領域與動態公告。</p>
+    <p class="text-xs text-slate-300"><strong>視覺層級：</strong>以強烈對比的 Dark UI、霓虹青色點綴與微互動提升視覺焦點。</p>
+    <p class="text-xs text-slate-300"><strong>色彩角色：</strong>深邃夜空黑搭配未來電光青（#00D2FF），完美呼應資工科技感。</p>
+  </div>
+
+  <!-- 方案 C -->
+  <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-800 space-y-3">
+    <div class="text-yzu-cyan font-bold text-base">方案 C：經典學術風</div>
+    <p class="text-xs text-slate-400"><strong>資訊組織：</strong>三欄式傳統學院門戶佈局，兼顧各類公告與連結。</p>
+    <p class="text-xs text-slate-400"><strong>視覺層級：</strong>強調嚴謹公務感，以實線框線區隔資訊區塊。</p>
+    <p class="text-xs text-slate-400"><strong>色彩角色：</strong>以大面積傳統深藍色為主，營造穩重嚴格的學術氛圍。</p>
+  </div>
+</div>
+
+
+<div class="space-y-4 text-xs sm:text-sm">
+  <div class="p-4 bg-slate-900/80 rounded-xl border border-slate-800 space-y-1">
+    <div class="text-yzu-cyan font-bold">互動一：研究領域卡片動態懸停 (純 HTML + CSS)</div>
+    <p class="text-slate-300"><strong>目的：</strong>引導使用者探索四大研究方向並提供點擊暗示。</p>
+    <p class="text-slate-400"><strong>觸發與狀態：</strong>滑鼠懸停 (`:hover`) 觸發；卡片向上浮動 6px，外框轉為亮青色（#00D2FF），並伴隨微光陰影。</p>
+  </div>
+
+  <div class="p-4 bg-slate-900/80 rounded-xl border border-slate-800 space-y-1">
+    <div class="text-yzu-cyan font-bold">互動二：頂端導覽列毛玻璃動態固定 (純 HTML + CSS)</div>
+    <p class="text-slate-300"><strong>目的：</strong>讓使用者在長頁面滾動時，隨時能夠快速切換至其他子頁面。</p>
+    <p class="text-slate-400"><strong>觸發與狀態：</strong>頁面向下滾動時觸發；導覽列維持固定（`sticky top-0`）並套用背景模糊（`backdrop-blur-md`）。</p>
+  </div>
+
+  <div class="p-4 bg-slate-900/80 rounded-xl border border-slate-800 space-y-1">
+    <div class="text-yzu-cyan font-bold">互動三：公告區塊動態互動與檢視 (JS / 響應式點擊)</div>
+    <p class="text-slate-300"><strong>目的：</strong>快速切換與預覽最新學術活動與系所公告。</p>
+    <p class="text-slate-400"><strong>觸發與狀態：</strong>點擊列表項目觸發；動態展開詳細說明或跳轉至對應子頁面。</p>
+  </div>
+</div>
