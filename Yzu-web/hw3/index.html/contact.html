@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>聯絡方式與交通資訊 | 元智大學資訊工程學系</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { theme: { extend: { colors: { yzu: { blue: '#0055A5', cyan: '#00D2FF', dark: '#0B132B', card: '#1C2541', accent: '#48CAE4' } } } } }
+  </script>
+  <style>body { font-family: 'Noto Sans TC', sans-serif; background-color: #070B19; color: #E2E8F0; }</style>
+</head>
+<body class="relative overflow-x-hidden">
+  <!-- 導覽列 -->
+  <nav class="sticky top-0 z-50 bg-yzu-dark/95 backdrop-blur-lg border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center space-x-3">
+        <img src="origin-logo.png" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Yuan_Ze_University_logo.svg/512px-Yuan_Ze_University_logo.svg.png'" class="w-10 h-10 object-contain">
+        <div class="text-lg font-bold text-white">元智大學 <span class="text-yzu-cyan">資訊工程學系</span></div>
+      </a>
+      <a href="index.html" class="text-xs font-mono text-yzu-cyan hover:underline"><i class="fa-solid fa-house mr-1"></i> 返回首頁</a>
+    </div>
+  </nav>
+
+  <!-- 主要內容區 -->
+  <div class="max-w-5xl mx-auto px-4 py-12 space-y-12">
+    <!-- 麵包屑導航 -->
+    <div class="text-sm font-mono text-slate-400 mb-4"><a href="index.html" class="hover:text-yzu-cyan">首頁</a> / <span class="text-yzu-cyan">聯絡</span></div>
+    
+    <!-- 聯絡我們總覽容器 -->
+    <div class="bg-yzu-card border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-2xl space-y-8">
+      <h1 class="text-3xl font-extrabold text-white border-b border-slate-800 pb-4 flex items-center gap-3">
+        <i class="fa-solid fa-location-dot text-yzu-cyan"></i> 聯絡方式與交通資訊
+      </h1>
+      <p class="text-slate-300 text-sm leading-relaxed">
+        若您對本系之招生、課程、學術合作或各項業務有任何疑問，歡迎透過以下聯絡方式與我們聯繫，或親自造訪系辦公室。
+      </p>
+
+      <!-- 資訊網格 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
+        <div class="space-y-4">
+          <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800">
+            <h3 class="text-yzu-cyan font-bold mb-2"><i class="fa-solid fa-building mr-2"></i>系辦公室位置</h3>
+            <p class="text-slate-300 text-xs leading-relaxed">320315 桃園市中壢區遠東路135號<br>元智大學 七館 R701 室</p>
+          </div>
+          <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800">
+            <h3 class="text-yzu-cyan font-bold mb-2"><i class="fa-solid fa-phone mr-2"></i>聯絡電話與信箱</h3>
+            <p class="text-slate-300 text-xs font-mono">Tel: +886-3-4638800 Ext. 2351</p>
+            <p class="text-slate-300 text-xs font-mono mt-1">Email: csdept@saturn.yzu.edu.tw</p>
+          </div>
+        </div>
+
+        <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 space-y-3">
+          <h3 class="text-yzu-cyan font-bold mb-2"><i class="fa-solid fa-bus mr-2"></i>交通指引</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            • <strong class="text-slate-200">火車</strong>：搭乘火車至內壢火車站，由後站出口步行約 10-15 分鐘即可抵達校門。<br><br>
+            • <strong class="text-slate-200">公車</strong>：可搭乘桃園市公車 155、156 路公車直達元智大學站。<br><br>
+            • <strong class="text-slate-200">自行開車</strong>：國道一號內壢交流道（中壢/大園出口）下，往中壢方向行駛並轉至遠東路。
+          </p>
+        </div>
+      </div>
+
+      <!-- 官方網站參考標籤 -->
+      <div class="pt-4 border-t border-slate-800 text-right">
+        <a href="https://www.cse.yzu.edu.tw/contact/index" target="_blank" class="text-xs font-mono text-yzu-cyan hover:underline">
+          <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> 參考自元智資工系官方聯絡頁面
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
