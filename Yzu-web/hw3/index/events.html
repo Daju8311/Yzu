@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>學術活動與獎勵 | 元智大學資訊工程學系</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { theme: { extend: { colors: { yzu: { blue: '#0055A5', cyan: '#00D2FF', dark: '#0B132B', card: '#1C2541', accent: '#48CAE4' } } } } }
+  </script>
+  <style>body { font-family: 'Noto Sans TC', sans-serif; background-color: #070B19; color: #E2E8F0; }</style>
+</head>
+<body class="relative overflow-x-hidden">
+  <!-- 導覽列 -->
+  <nav class="sticky top-0 z-50 bg-yzu-dark/95 backdrop-blur-lg border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center space-x-3">
+        <img src="origin-logo.png" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Yuan_Ze_University_logo.svg/512px-Yuan_Ze_University_logo.svg.png'" class="w-10 h-10 object-contain">
+        <div class="text-lg font-bold text-white">元智大學 <span class="text-yzu-cyan">資訊工程學系</span></div>
+      </a>
+      <a href="index.html" class="text-xs font-mono text-yzu-cyan hover:underline"><i class="fa-solid fa-house mr-1"></i> 返回首頁</a>
+    </div>
+  </nav>
+
+  <!-- 主要內容區 -->
+  <div class="max-w-5xl mx-auto px-4 py-12 space-y-12">
+    <!-- 麵包屑導航 -->
+    <div class="text-sm font-mono text-slate-400 mb-4"><a href="index.html" class="hover:text-yzu-cyan">首頁</a> / <span class="text-yzu-cyan">活動</span></div>
+    
+    <!-- 活動總覽容器 -->
+    <div class="bg-yzu-card border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-2xl space-y-8">
+      <h1 class="text-3xl font-extrabold text-white border-b border-slate-800 pb-4 flex items-center gap-3">
+        <i class="fa-solid fa-calendar-check text-yzu-cyan"></i> 學術活動與獎勵專區
+      </h1>
+      <p class="text-slate-300 text-sm leading-relaxed">
+        元智資工系積極舉辦各類學術研討會、校園黑客松競賽、NVIDIA Watch Party，並提供豐富的學生獎學金、競賽獎勵與企業贊助補助方案。
+      </p>
+
+      <!-- 活動項目網格 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800">
+          <div class="text-yzu-cyan font-bold text-base mb-2"><i class="fa-solid fa-trophy mr-2"></i>學生競賽與獎學金獎勵</div>
+          <p class="text-xs text-slate-400 leading-relaxed mb-3">鼓勵同學參與全國大專程式競賽、AI創新實戰大賽與各類學術論文競賽，並設有優秀學生獎學金及急難助學金。</p>
+          <span class="text-[10px] bg-yzu-blue/30 text-yzu-cyan px-2.5 py-1 rounded font-mono">支援學生多元表現</span>
+        </div>
+        <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800">
+          <div class="text-yzu-cyan font-bold text-base mb-2"><i class="fa-solid fa-people-group mr-2"></i>系所特色活動與講座</div>
+          <p class="text-xs text-slate-400 leading-relaxed mb-3">包含暑期程式體驗營、GSA半導體人才講堂、企業實習說明會及專題成果展，助您拓展產業視野。</p>
+          <span class="text-[10px] bg-yzu-blue/30 text-yzu-cyan px-2.5 py-1 rounded font-mono">理論與實務並進</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

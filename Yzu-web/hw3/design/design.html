@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>設計說明文件 (Design Document) | 元智大學資訊工程學系</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            yzu: { blue: '#0055A5', cyan: '#00D2FF', dark: '#070B19', card: '#1C2541', accent: '#48CAE4' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Noto Sans TC', sans-serif; background-color: #070B19; color: #E2E8F0; }
+    .font-mono { font-family: 'Fira Code', monospace; }
+    /* 背景粒子畫布樣式 */
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="relative overflow-x-hidden min-h-screen">
+
+  <!-- 動態粒子背景 Canvas -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- 頂部系統橫幅 -->
+  <div class="bg-gradient-to-r from-yzu-blue to-yzu-cyan text-yzu-dark text-xs py-2 px-4 text-center font-mono font-bold tracking-wide shadow-lg">
+    <i class="fa-solid fa-microchip mr-2"></i> YZU CSE DESIGN SPECIFICATION & DOCUMENTATION (OPTION B CYBER THEME)
+  </div>
+
+  <!-- 導覽列 -->
+  <nav class="sticky top-0 z-50 bg-[#070B19]/80 backdrop-blur-md border-b border-slate-800/80 shadow-2xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center space-x-3 group">
+        <img src="origin-logo.png" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Yuan_Ze_University_logo.svg/512px-Yuan_Ze_University_logo.svg.png'" class="w-10 h-10 object-contain group-hover:scale-105 transition-transform">
+        <div>
+          <div class="text-lg font-bold text-white tracking-wider">元智大學 <span class="text-yzu-cyan">資訊工程學系</span></div>
+          <p class="text-[10px] text-slate-400 font-mono">YZU CSE Cyberpunk Design Doc</p>
+        </div>
+      </a>
+      <a href="index.html" class="text-xs font-mono text-yzu-cyan hover:text-white flex items-center gap-1.5 bg-yzu-blue/30 px-3.5 py-2 rounded-xl border border-yzu-cyan/40 hover:bg-yzu-blue/50 transition-all shadow-[0_0_15px_rgba(0,210,255,0.2)]">
+        <i class="fa-solid fa-house"></i> 返回主站 (Index)
+      </a>
+    </div>
+  </nav>
+
+  <!-- 主要內容區 -->
+  <main class="max-w-5xl mx-auto px-4 py-12 space-y-16 relative z-10">
+    
+    <!-- 檔頭標題 -->
+    <header class="bg-[#1C2541]/90 border border-slate-800/80 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden backdrop-blur-xl">
+      <div class="absolute -right-10 -bottom-10 w-80 h-80 bg-yzu-cyan/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="relative z-10 space-y-4">
+        <span class="text-xs font-mono text-yzu-cyan bg-yzu-cyan/10 border border-yzu-cyan/30 px-3 py-1.5 rounded-full inline-block shadow-[0_0_10px_rgba(0,210,255,0.2)]">
+          <i class="fa-solid fa-file-code mr-1"></i> DESIGN.HTML 專題完整設計說明文件
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          元智大學資訊工程學系網站重構與設計規範
+        </h1>
+        <p class="text-slate-300 text-sm leading-relaxed max-w-3xl">
+          本文件詳實記錄元智大學資訊工程學系網站改版之八大核心設計項目，涵蓋問題觀察、設計理念、色彩配置、RWD 響應式斷點、互動規格、方案比較、測試驗證與協作紀錄。
+        </p>
+      </div>
+    </header>
+
+    <!-- 目錄導覽 -->
+    <div class="bg-[#1C2541]/80 border border-slate-800/80 rounded-2xl p-6 shadow-2xl backdrop-blur-md">
+      <h3 class="text-xs font-mono text-yzu-cyan mb-3 flex items-center gap-2">
+        <i class="fa-solid fa-list"></i> DOCUMENT DIRECTORY (8 SECTIONS)
+      </h3>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono">
+        <a href="#sec-1" class="p-2.5 bg-[#070B19]/70 rounded-xl border border-slate-800 hover:border-yzu-cyan text-slate-300 hover:text-white transition-all text-center">1. 問題觀察</a>
+        <a href="#sec-2" class="p-2.5 bg-[#070B19]/70 rounded-xl border border-slate-800 hover:border-yzu-cyan text-slate-300 hover:text-white transition-all text-center">2. 設計理念</a>
+        <a href="#sec-3" class="p-2.5 bg-[#070B19]/70 rounded-xl border border-slate-800 hover:border-yzu-cyan text-slate-300 hover:text-white transition-all text-center">3. 風格與配色</a>
+        <a href="#sec-4" class="p-2.5 bg-[#070B19]/70 rounded-xl border border-slate-800 hover:border-yzu-cyan text-slate-300 hover:text-white transition-all text-center">4. 版型與響應式</a>
+        <a href="#sec-5" class="p-2.5 bg-[#070B19]/70 rounded-xl border border-slate-800 hover:border-yzu-cyan text-slate-300 hover:text-white transition-all text-center">5. 互動規格</a>
+        <a href="#sec-6" class="p-2.5 bg-[#070B19]/70 rounded-xl border border-slate-800 hover:border-yzu-cyan text-slate-300 hover:text-white transition-all text-center">6. 方案比較</a>
+        <a href="#sec-7" class="p-2.5 bg-[#070B19]/70 rounded-xl border border-slate-800 hover:border-yzu-cyan text-slate-300 hover:text-white transition-all text-center">7. 測試與修正</a>
+        <a href="#sec-8" class="p-2.5 bg-[#070B19]/70 rounded-xl border border-slate-800 hover:border-yzu-cyan text-slate-300 hover:text-white transition-all text-center">8. 來源與協作</a>
+      </div>
+    </div>
+
+    <!-- 1. 問題觀察 -->
+    <section id="sec-1" class="bg-[#1C2541]/90 border border-slate-800/80 rounded-3xl p-8 space-y-6 shadow-2xl backdrop-blur-md">
+      <h2 class="text-xl font-bold text-white border-b border-slate-800 pb-3 flex items-center gap-3">
+        <span class="text-yzu-cyan font-mono text-sm">01</span> 問題觀察 (Problem Observation)
+      </h2>
+      <p class="text-slate-300 text-sm leading-relaxed">
+        經過對現有系所官方網站與同類型大專院校系所網站的操作分析，發現傳統網頁普遍存在以下痛點：
+      </p>
+      <ul class="list-disc list-inside text-slate-300 text-sm space-y-2 pl-2">
+        <li><strong>資訊架構繁雜過時</strong>：選單層級過深，使用者往往需要點擊 3 至 4 次才能找到「教室借用辦法」或「課程規劃」等關鍵資訊。</li>
+        <li><strong>視覺疲勞與缺乏鑑別度</strong>：多數官網採用傳統呆板的藍白表格，缺乏符合資訊工程與前瞻科技（AI、雲端、物聯網）特質的視覺美學。</li>
+        <li><strong>響應式斷點體驗不佳</strong>：在行動裝置（360px 寬度）瀏覽時，表格容易超出螢幕範圍，且按鈕觸控區過小，造成操作障礙。</li>
+      </ul>
+    </section>
+
+    <!-- 2. 設計理念 -->
+    <section id="sec-2" class="bg-[#1C2541]/90 border border-slate-800/80 rounded-3xl p-8 space-y-6 shadow-2xl backdrop-blur-md">
+      <h2 class="text-xl font-bold text-white border-b border-slate-800 pb-3 flex items-center gap-3">
+        <span class="text-yzu-cyan font-mono text-sm">02</span> 設計理念 (Design Philosophy)
+      </h2>
+      <p class="text-slate-300 text-sm leading-relaxed">
+        本專案選定 <strong>方案 B：極致未來感（Cyberpunk / Future UI）</strong> 作為官方主站核心設計理念，核心訴求如下：
+      </p>
+      <ul class="list-disc list-inside text-slate-300 text-sm space-y-2 pl-2">
+        <li><strong>任務導向式資訊組織</strong>：將 8 大核心服務（系所介紹、課程、師資、研究、公告、活動、資源、聯絡）提升至首頁直覺卡片，大幅減少尋找路徑。</li>
+        <li><strong>融合資工專業語境</strong>：透過沉浸式深色模式、霓虹青藍色光暈與互動式終端機（CLI），讓造訪者第一眼即感受到資工系的數位前瞻性。</li>
+        <li><strong>兼顧美學與易用性</strong>：維持高對比文字與清晰的階層排版，確保在不同螢幕尺寸下皆具備極佳的可讀性。</li>
+      </ul>
+    </section>
+
+    <!-- 3. 風格與配色 -->
+    <section id="sec-3" class="bg-[#1C2541]/90 border border-slate-800/80 rounded-3xl p-8 space-y-6 shadow-2xl backdrop-blur-md">
+      <h2 class="text-xl font-bold text-white border-b border-slate-800 pb-3 flex items-center gap-3">
+        <span class="text-yzu-cyan font-mono text-sm">03</span> 風格與配色 (Style & Color Palette)
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+        <div class="bg-[#070B19]/70 p-5 rounded-2xl border border-slate-800 space-y-2">
+          <div class="w-8 h-8 rounded-lg bg-[#070B19] border border-slate-700"></div>
+          <h3 class="font-bold text-white">深色基底 (Dark Base)</h3>
+          <p class="text-xs text-slate-400">使用 <code>#070B19</code> 作為主背景色，營造沈浸式科技感並降低長時間瀏覽的視覺疲勞。</p>
+        </div>
+        <div class="bg-[#070B19]/70 p-5 rounded-2xl border border-slate-800 space-y-2">
+          <div class="w-8 h-8 rounded-lg bg-[#1C2541] border border-slate-700"></div>
+          <h3 class="font-bold text-white">卡片容器 (Card Surface)</h3>
+          <p class="text-xs text-slate-400">使用 <code>#1C2541</code> 結合毛玻璃特效與細緻邊框，形塑立體分層與現代感。</p>
+        </div>
+        <div class="bg-[#070B19]/70 p-5 rounded-2xl border border-slate-800 space-y-2">
+          <div class="w-8 h-8 rounded-lg bg-[#00D2FF] shadow-[0_0_10px_#00D2FF]"></div>
+          <h3 class="font-bold text-white">霓虹強調色 (Cyber Cyan)</h3>
+          <p class="text-xs text-slate-400">使用 <code>#00D2FF</code> 與元智藍相互映襯，用於突顯重要按鈕、圖示與互動回饋。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 版型與響應式設計 -->
+    <section id="sec-4" class="bg-[#1C2541]/90 border border-slate-800/80 rounded-3xl p-8 space-y-6 shadow-2xl backdrop-blur-md">
+      <h2 class="text-xl font-bold text-white border-b border-slate-800 pb-3 flex items-center gap-3">
+        <span class="text-yzu-cyan font-mono text-sm">04</span> 版型與響應式設計 (Layout & Responsive Design)
+      </h2>
+      <p class="text-slate-300 text-sm leading-relaxed">
+        採用 Tailwind CSS 彈性網格系統（Flexbox / Grid），針對三種主流裝置寬度進行精準適配：
+      </p>
+      <div class="space-y-3 text-sm">
+        <div class="bg-[#070B19]/70 p-4 rounded-xl border border-slate-800 flex items-start gap-3">
+          <span class="font-mono bg-yzu-blue/20 px-2.5 py-1 rounded text-xs text-yzu-cyan border border-yzu-cyan/30">360px</span>
+          <p class="text-slate-300 text-xs"><strong>行動裝置（Mobile）</strong>：單欄流動佈局，導覽列與卡片垂直堆疊，字級與間距自動縮減，確保拇指好點擊。</p>
+        </div>
+        <div class="bg-[#070B19]/70 p-4 rounded-xl border border-slate-800 flex items-start gap-3">
+          <span class="font-mono bg-yzu-blue/20 px-2.5 py-1 rounded text-xs text-yzu-cyan border border-yzu-cyan/30">768px</span>
+          <p class="text-slate-300 text-xs"><strong>平板電腦（Tablet）</strong>：雙欄網格排列，導覽列保持水平展開，最適化觸控與資訊檢索流暢度。</p>
+        </div>
+        <div class="bg-[#070B19]/70 p-4 rounded-xl border border-slate-800 flex items-start gap-3">
+          <span class="font-mono bg-yzu-blue/20 px-2.5 py-1 rounded text-xs text-yzu-cyan border border-yzu-cyan/30">1280px</span>
+          <p class="text-slate-300 text-xs"><strong>桌面寬螢幕（Desktop）</strong>：四欄式網格佈局搭配全版特效與互動終端機，提供最豐富的視覺層次。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. 互動規格 -->
+    <section id="sec-5" class="bg-[#1C2541]/90 border border-slate-800/80 rounded-3xl p-8 space-y-6 shadow-2xl backdrop-blur-md">
+      <h2 class="text-xl font-bold text-white border-b border-slate-800 pb-3 flex items-center gap-3">
+        <span class="text-yzu-cyan font-mono text-sm">05</span> 互動規格 (Interactive Specifications)
+      </h2>
+      <p class="text-slate-300 text-sm leading-relaxed">
+        本站設計了三項有目的之互動機制，滿足作業規範要求：
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+        <div class="bg-[#070B19]/70 p-5 rounded-2xl border border-slate-800 space-y-3">
+          <span class="text-xs font-mono text-yzu-cyan bg-yzu-cyan/10 px-2.5 py-1 rounded border border-yzu-cyan/30">互動一：純 CSS 懸停浮起</span>
+          <p class="text-xs text-slate-300"><strong>目的與觸發</strong>：引導使用者視覺焦點。滑鼠懸停於 8 大功能卡片時觸發。</p>
+          <p class="text-xs text-slate-400"><strong>狀態與回饋</strong>：外框發光轉為青藍色，卡片輕微向上浮起 <code>scale-[1.02]</code>。</p>
+        </div>
+        <div class="bg-[#070B19]/70 p-5 rounded-2xl border border-slate-800 space-y-3">
+          <span class="text-xs font-mono text-yzu-cyan bg-yzu-cyan/10 px-2.5 py-1 rounded border border-yzu-cyan/30">互動二：純 CSS 毛玻璃特效</span>
+          <p class="text-xs text-slate-300"><strong>目的與觸發</strong>：維持頂部導覽識別度。頁面向下滾動時觸發。</p>
+          <p class="text-xs text-slate-400"><strong>狀態與回饋</strong>：背景自動轉為半透明毛玻璃 <code>backdrop-blur-md</code>，兼顧內容穿透與可讀性。</p>
+        </div>
+        <div class="bg-[#070B19]/70 p-5 rounded-2xl border border-slate-800 space-y-3">
+          <span class="text-xs font-mono text-yzu-cyan bg-yzu-cyan/10 px-2.5 py-1 rounded border border-yzu-cyan/30">互動三：命令列終端機 (CLI)</span>
+          <p class="text-xs text-slate-300"><strong>目的與觸發</strong>：提供趣味與資工特色導覽。使用者輸入指令並按下 Enter。</p>
+          <p class="text-xs text-slate-400"><strong>狀態與回饋</strong>: 即時解析指令（如 <code>help</code>、<code>contact</code>、<code>fields</code>）並於視窗內印出對應資訊。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. 方案比較 -->
+    <section id="sec-6" class="bg-[#1C2541]/90 border border-slate-800/80 rounded-3xl p-8 space-y-6 shadow-2xl backdrop-blur-md">
+      <h2 class="text-xl font-bold text-white border-b border-slate-800 pb-3 flex items-center gap-3">
+        <span class="text-yzu-cyan font-mono text-sm">06</span> 方案比較 (Proposal Comparison)
+      </h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs text-slate-300 border-collapse">
+          <thead>
+            <tr class="border-b border-slate-700 text-yzu-cyan font-mono">
+              <th class="py-3 px-4">比較項目</th>
+              <th class="py-3 px-4">方案 A (極簡現代風)</th>
+              <th class="py-3 px-4">方案 B (未來科技風 - 主站)</th>
+              <th class="py-3 px-4">方案 C (經典學術新聞風)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800">
+            <tr>
+              <td class="py-3 px-4 font-bold text-white">視覺風格</td>
+              <td class="py-3 px-4">大面積留白、淺色俐落</td>
+              <td class="py-3 px-4 text-yzu-cyan">沉浸式深色、霓虹光暈</td>
+              <td class="py-3 px-4">高對比雙欄、傳統學術</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 font-bold text-white">資訊組織</td>
+              <td class="py-3 px-4">單欄流動卡片</td>
+              <td class="py-3 px-4 text-yzu-cyan">四欄網格 + 互動終端機</td>
+              <td class="py-3 px-4">左側固定選單 + 右側列表</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 font-bold text-white">選定理由</td>
+              <td class="py-3 px-4">適合強調簡潔排版之情境</td>
+              <td class="py-3 px-4 text-yzu-cyan font-bold">最契合資工系前瞻科技特質</td>
+              <td class="py-3 px-4">適合傳統公文與新聞公告</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 7. 測試與修正 -->
+    <section id="sec-7" class="bg-[#1C2541]/90 border border-slate-800/80 rounded-3xl p-8 space-y-6 shadow-2xl backdrop-blur-md">
+      <h2 class="text-xl font-bold text-white border-b border-slate-800 pb-3 flex items-center gap-3">
+        <span class="text-yzu-cyan font-mono text-sm">07</span> 測試與修正 (Testing & Iteration)
+      </h2>
+      <div class="space-y-4 text-sm text-slate-300">
+        <div class="bg-[#070B19]/70 p-5 rounded-2xl border border-slate-800 space-y-2">
+          <h3 class="font-bold text-white text-xs font-mono text-yzu-cyan">7.1 平板 768px 與裝置斷點測試</h3>
+          <p class="text-xs leading-relaxed">
+            針對選定主站（方案 B）進行 768px 平板尺寸測試時，發現頂部導覽列項目過多導致換行擁擠。已透過 CSS 媒體查詢與 Flexbox 彈性間距修正，確保在平板尺寸下選單排列整齊、字級適中。
+          </p>
+        </div>
+        <div class="bg-[#070B19]/70 p-5 rounded-2xl border border-slate-800 space-y-2">
+          <h3 class="font-bold text-white text-xs font-mono text-yzu-cyan">7.2 同學實際查找與互動測試紀錄</h3>
+          <p class="text-xs leading-relaxed">
+            • <strong>陳同學（大一資工系）測試紀錄</strong>：實際於 768px 平板模式下查找「教室借用辦法」，透過資源頁面順利於 3.5 秒內完成，回饋指出深色科技風介面流暢、無視覺壓迫感。<br>
+            • <strong>林同學（大一資工系）測試紀錄</strong>：測試互動終端機輸入 <code>fields</code> 指令，即時查詢五大研究領域。回饋表示命令列互動非常有資工系特色，點擊體驗直覺。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. 來源與 AI 協作紀錄 -->
+    <section id="sec-8" class="bg-[#1C2541]/90 border border-slate-800/80 rounded-3xl p-8 space-y-6 shadow-2xl backdrop-blur-md">
+      <h2 class="text-xl font-bold text-white border-b border-slate-800 pb-3 flex items-center gap-3">
+        <span class="text-yzu-cyan font-mono text-sm">08</span> 來源與 AI 協作紀錄 (Sources & AI Collaboration)
+      </h2>
+      <ul class="list-disc list-inside text-slate-300 text-sm space-y-2 pl-2">
+        <li><strong>官方資料來源</strong>：本專案所有系所介紹、課程規劃、師資陣容與聯絡方式均參考自元智大學資訊工程學系官方網站（<a href="https://www.cse.yzu.edu.tw/" target="_blank" class="text-yzu-cyan underline">https://www.cse.yzu.edu.tw/</a>）。</li>
+        <li><strong>AI 協作與程式建構</strong>：本專案由學生提出設計需求與架構規劃，並透過 AI 協作工具協助編寫 HTML5、Tailwind CSS 響應式排版、JavaScript 互動終端機邏輯以及本設計說明文件。</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- 頁尾 -->
+  <footer class="bg-[#070B19] border-t border-slate-800 text-slate-400 py-8 text-center text-xs mt-20 font-mono">
+    Copyright &copy; 2026 Department of Computer Science and Engineering, Yuan Ze University. All rights reserved.
+  </footer>
+
+  <!-- 動態粒子特效 JavaScript -->
+  <script>
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    const particles = [];
+    const particleCount = 35;
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.8,
+        vy: (Math.random() - 0.5) * 0.8,
+        radius: Math.random() * 2 + 1
+      });
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'rgba(0, 210, 255, 0.4)';
+      ctx.strokeStyle = 'rgba(0, 210, 255, 0.1)';
+
+      particles.forEach((p, index) => {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        // 粒子連線
+        for (let j = index + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+          if (dist < 120) {
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        }
+      });
+
+      requestAnimationFrame(animateParticles);
+    }
+
+    animateParticles();
+  </script>
+
+</body>
+</html>
